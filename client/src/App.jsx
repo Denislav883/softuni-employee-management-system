@@ -1,8 +1,8 @@
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Pagination from "./components/Pagination";
-import Search from "./components/Search";
-import Table from "./components/Table";
+import Footer from "./components/Footer.jsx";
+import Header from "./components/Header.jsx";
+import Pagination from "./components/Pagination.jsx";
+import Search from "./components/Search.jsx";
+import UserList from "./components/UserList.jsx";
 
 function App() {
 
@@ -14,9 +14,7 @@ function App() {
                 <section className="card users-container">
                     <Search />
 
-                    <Table />
-
-                    <button className="btn-add btn">Add new user</button>
+                    <UserList />
 
                     <Pagination />
                 </section>
