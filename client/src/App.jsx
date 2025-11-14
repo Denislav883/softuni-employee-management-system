@@ -17,6 +17,14 @@ function App() {
         setShowCreateUserModal(false);
     }
 
+    const addUserSubmitHandler = (event) => {
+        event.preventDefault();
+        
+        const formData = new FormData(event.target);
+
+        const userData = Object.fromEntries(formData);
+    }
+
     return (
         <div>
             <Header />
@@ -32,7 +40,11 @@ function App() {
                     <Pagination />
                 </section>
 
-                {showCreateUserModal && <CreateUserModal onClose={closeUserModalHandler} />}
+                {showCreateUserModal && 
+                    <CreateUserModal 
+                        onClose={closeUserModalHandler}
+                        onSubmit={addUserSubmitHandler}
+                 />}
             </main>
 
             <Footer />
