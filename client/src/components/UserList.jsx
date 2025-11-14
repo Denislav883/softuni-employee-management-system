@@ -1,11 +1,14 @@
 import { useState } from "react";
 import UserDetails from "./UserDetails.jsx";
 import UserItem from "./UserItem.jsx";
+import UserDeleteModal from "./UserDeleteModal.jsx";
 
 export default function UserList({
-    users
+    users,
+    forceUserRefresh
 }) {
     const [showUserDetails, setShowUserDetails] = useState(false);
+    const [showUserDelete, setShowUserDelete] = useState(false);
     const [selectedUserId, setSelectedUserId] = useState(null);
 
     const detailsActionClickHandler = (userId) => {
@@ -13,8 +16,15 @@ export default function UserList({
         setSelectedUserId(userId);
     }
 
+    const deleteActionClickHandler = (userId) => {
+        setSelectedUserId(userId);
+        setShowUserDelete(true);
+    }
+
     const closeModalHandler = () => {
         setShowUserDetails(false);
+        setShowUserDelete(false);
+        setSelectedUserId(null);
     }
 
     return (
@@ -80,7 +90,8 @@ export default function UserList({
                         <UserItem 
                             {...user} 
                             key={user._id} 
-                            onDetailsClick={detailsActionClickHandler}
+                            onDetailsClick={detailsActionClickHandler} 
+                            onDeleteClick={deleteActionClickHandler}
                         />
                     ))}
                 </tbody>
@@ -89,7 +100,16 @@ export default function UserList({
             {showUserDetails && 
                 <UserDetails 
                     userId={selectedUserId} 
-                    onClose={closeModalHandler}
+                    onClose={closeModalHandler} 
+                    forceUserRefresh={forceUserRefresh}
+                />
+            }
+
+            {showUserDelete && 
+                <UserDeleteModal 
+                    userId={selectedUserId} 
+                    onClose={closeModalHandler} 
+                    forceUserRefresh={forceUserRefresh}
                 />
             }
         </div>
