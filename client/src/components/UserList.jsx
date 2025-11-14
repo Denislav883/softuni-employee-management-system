@@ -82,13 +82,13 @@ export default function UserList({
                             key={user._id} 
                             onDetailsClick={detailsActionClickHandler}
                         />
-                    ))}l
+                    ))}
                 </tbody>
             </table>
 
             {showUserDetails && 
                 <UserDetails 
-                    userId={setSelectedUserId} 
+                    userId={selectedUserId} 
                     onClose={closeModalHandler}
                 />
             }
