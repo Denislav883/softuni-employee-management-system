@@ -75,8 +75,6 @@ export default function UserList() {
                     {users.map(user => <UserItem key={user._id} {...user} />)}
                 </tbody>
             </table>
-
-            <button className="btn-add btn">Add new user</button>
         </div>
     );
 }
